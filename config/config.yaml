@@ -1,5 +1,5 @@
 defaults:
   - hydra: default
-  - vqvae: mnist
-  - data: mnist
+  - vqvae: ffhq256
+  - data: ffhq256
   - wandb: null
