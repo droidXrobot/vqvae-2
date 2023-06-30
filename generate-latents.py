@@ -31,7 +31,9 @@ def encode_loop(loader, net, cfg, out_dir, device):
     for batch in tqdm(loader):
         if isinstance(batch, (list, tuple)):
             batch, *_ = batch
-        _, idx, _ = net(batch.to(device))
+        #_, idx, _ = net(batch.to(device))
+        _, idx, _, _ = net(batch.to(device))
+
 
         for i, id in enumerate(idx):
             for bi, b in enumerate(id):
