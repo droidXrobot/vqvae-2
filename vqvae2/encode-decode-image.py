@@ -5,7 +5,7 @@ from PIL import Image
 import torchvision.transforms as transforms
 from vqvae2 import VQVAE, VQVAE2
 from torchvision.utils import save_image
-
+import argparse
 
 def encode_decode_single_image(image_path, checkpoint_path, cfg, device='cuda'):
     """
@@ -56,8 +56,13 @@ def main(cfg: DictConfig):
     # Call the training function to train the model
     # After training, use the model to encode and decode an image
     # For example, if your image is at './image.jpg' and your model checkpoint is at './model.pt'
-    image_path = '/content/00056.png'
-    checkpoint_path = '/content/state_dict_final.pt'
+    #image_path = '/content/00056.png'
+    #checkpoint_path = '/content/state_dict_final.pt'
+    # Parse command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--image_path', type=str, required=True, help='Path to the image to be encoded and decoded')
+    parser.add_argument('--checkpoint_path', type=str, required=True, help='Path to the trained model checkpoint')
+    args = parser.parse_args()
     
     recon_image, latent_codes = encode_decode_single_image(image_path, checkpoint_path, cfg)
 
